@@ -7,9 +7,7 @@ const hours = [
 
 const categoryGroups = [
   {
-    number: "01",
     title: "Föremål & andakt",
-    description: "Ett urval av katolska föremål för bön, hem och gåvor.",
     items: [
       { name: "Rosenkransar", href: "https://www.lillatherese.se/rosenkransar" },
       { name: "Krucifix", href: "https://www.lillatherese.se/krucifix" },
@@ -17,9 +15,7 @@ const categoryGroups = [
     ],
   },
   {
-    number: "02",
     title: "Böcker & förlag",
-    description: "Katolsk litteratur för vuxna, ungdomar och familjer.",
     items: [
       { name: "Karmels förlag", href: "https://www.lillatherese.se/b-cker" },
       { name: "Veritas förlag", href: "https://www.lillatherese.se/veritas-f-rlag" },
@@ -28,9 +24,7 @@ const categoryGroups = [
     ],
   },
   {
-    number: "03",
     title: "Om butiken",
-    description: "Läs mer, beställ på distans eller kom i kontakt med oss.",
     items: [
       { name: "Om", href: "https://www.lillatherese.se/om" },
       { name: "Beställning", href: "https://www.lillatherese.se/best-llning" },
@@ -86,7 +80,7 @@ export default function Home() {
         <div className="hero-copy">
           <p>Katolsk bokhandel i Göteborg</p>
           <h1>Lilla Therese<br />Bokhandel</h1>
-          <a href="#besok">Sten Sturegatan 1A <span>↓</span></a>
+          <a href="#besok">Sten Sturegatan 1A</a>
         </div>
         <figure className="hero-image">
           <img src="/therese.webp" alt="Staty av den heliga Thérèse av Lisieux" />
@@ -95,26 +89,16 @@ export default function Home() {
 
       <section className="sortiment" id="sortiment">
         <div className="sortiment-intro">
-          <p className="label">Sortiment & information</p>
-          <h2>Hitta rätt</h2>
-          <p>Vi har samlat butikens innehåll i tre enkla avdelningar.</p>
+          <p className="label">Sortiment</p>
+          <h2>Vårt utbud</h2>
         </div>
         <div className="category-groups">
           {categoryGroups.map((group) => (
-            <section className="category-group" key={group.title} aria-labelledby={`category-${group.number}`}>
-              <div className="category-heading">
-                <span>{group.number}</span>
-                <div>
-                  <h3 id={`category-${group.number}`}>{group.title}</h3>
-                  <p>{group.description}</p>
-                </div>
-              </div>
+            <section className="category-group" key={group.title}>
+              <h3>{group.title}</h3>
               <div className="category-links">
                 {group.items.map((item) => (
-                  <a href={item.href} key={item.name}>
-                    <span>{item.name}</span>
-                    <span aria-hidden="true">↗</span>
-                  </a>
+                  <a href={item.href} key={item.name}>{item.name}</a>
                 ))}
               </div>
             </section>
@@ -126,7 +110,7 @@ export default function Home() {
         <div>
           <p className="label">Besök</p>
           <h2>Sten Sturegatan 1A<br />411 39 Göteborg</h2>
-          <a className="map-link" href="https://maps.google.com/?q=Sten+Sturegatan+1A+Göteborg" target="_blank" rel="noreferrer">Visa i Google Maps ↗</a>
+          <a className="map-link" href="https://maps.google.com/?q=Sten+Sturegatan+1A+Göteborg" target="_blank" rel="noreferrer">Visa i Google Maps</a>
         </div>
         <div className="hours">
           <p className="label">Öppettider</p>
