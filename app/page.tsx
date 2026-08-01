@@ -2,109 +2,143 @@ const hours = [
   ["Måndag–tisdag", "Stängt"],
   ["Onsdag–fredag", "15.00–18.00"],
   ["Lördag", "14.00–18.00"],
-  ["Söndag", "10.00–11.00 & 12.10–14.00"],
+  ["Söndag", "10.00–11.00 / 12.10–14.00"],
 ];
 
-const assortment = [
-  { number: "01", title: "Böcker", text: "Kristen och katolsk litteratur för tro, fördjupning och vardag." },
-  { number: "02", title: "Andaktsliv", text: "Rosenkransar, krucifix, ikoner, rökelse, ljus och medaljer." },
-  { number: "03", title: "Gåvor", text: "Kort, statyetter och omsorgsfullt valda presenter för livets högtider." },
+const categoryGroups = [
+  {
+    number: "01",
+    title: "Föremål & andakt",
+    description: "Ett urval av katolska föremål för bön, hem och gåvor.",
+    items: [
+      { name: "Rosenkransar", href: "https://www.lillatherese.se/rosenkransar" },
+      { name: "Krucifix", href: "https://www.lillatherese.se/krucifix" },
+      { name: "Ikoner", href: "https://www.lillatherese.se/vrigt" },
+    ],
+  },
+  {
+    number: "02",
+    title: "Böcker & förlag",
+    description: "Katolsk litteratur för vuxna, ungdomar och familjer.",
+    items: [
+      { name: "Karmels förlag", href: "https://www.lillatherese.se/b-cker" },
+      { name: "Veritas förlag", href: "https://www.lillatherese.se/veritas-f-rlag" },
+      { name: "Youcat ungdom", href: "https://www.lillatherese.se/youcat-ungdom/" },
+      { name: "Catholica förlag", href: "https://www.lillatherese.se/catholica-f-rlag" },
+    ],
+  },
+  {
+    number: "03",
+    title: "Om butiken",
+    description: "Läs mer, beställ på distans eller kom i kontakt med oss.",
+    items: [
+      { name: "Om", href: "https://www.lillatherese.se/om" },
+      { name: "Beställning", href: "https://www.lillatherese.se/best-llning" },
+      { name: "Kontakta oss", href: "https://www.lillatherese.se/kontakta-oss" },
+    ],
+  },
 ];
 
 export default function Home() {
+  const localBusiness = {
+    "@context": "https://schema.org",
+    "@type": "BookStore",
+    "@id": "https://www.lillatherese.se/#bokhandel",
+    name: "Lilla Therese Bokhandel AB",
+    url: "https://www.lillatherese.se/",
+    telephone: "+4631132723",
+    email: "info@lillatherese.se",
+    description: "Katolsk bokhandel i Göteborg med katolska böcker, rosenkransar, ikoner, krucifix, ljus, rökelse och presenter.",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Sten Sturegatan 1A",
+      postalCode: "411 39",
+      addressLocality: "Göteborg",
+      addressCountry: "SE",
+    },
+    areaServed: { "@type": "City", name: "Göteborg" },
+    openingHoursSpecification: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Wednesday", "Thursday", "Friday"], opens: "15:00", closes: "18:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "14:00", closes: "18:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "10:00", closes: "11:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "12:10", closes: "14:00" },
+    ],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Katolska produkter",
+      itemListElement: categoryGroups.flatMap((group) => group.items).map(({ name }) => ({ "@type": "OfferCatalog", name })),
+    },
+  };
+
   return (
     <main>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="Lilla Therese Bokhandel, startsida">
-          <span className="brand-mark" aria-hidden="true">✦</span>
-          <span><strong>Lilla Therese</strong><small>Katolsk bokhandel · Göteborg</small></span>
-        </a>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }} />
+      <header>
+        <a className="brand" href="#top">Lilla Therese</a>
         <nav aria-label="Huvudmeny">
           <a href="#sortiment">Sortiment</a>
-          <a href="#om">Om oss</a>
-          <a href="#besok">Besök oss</a>
-          <a className="nav-cta" href="mailto:info@lillatherese.se">Kontakta oss</a>
+          <a href="#besok">Besök</a>
+          <a href="mailto:info@lillatherese.se">Kontakt</a>
         </nav>
       </header>
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p className="eyebrow">En katolsk bokhandel mitt i Göteborg</p>
-          <h1>Tro, hopp<br />och god läsning.</h1>
-          <p className="lead">En liten bokhandel med ett stort hjärta för katolsk tro, bildning och vackra ting för andaktslivet.</p>
-          <div className="hero-actions">
-            <a className="button primary" href="#besok">Hitta till butiken <span>→</span></a>
-            <a className="text-link" href="#sortiment">Upptäck vårt sortiment</a>
-          </div>
+          <p>Katolsk bokhandel i Göteborg</p>
+          <h1>Lilla Therese<br />Bokhandel</h1>
+          <a href="#besok">Sten Sturegatan 1A <span>↓</span></a>
         </div>
-        <div className="hero-art" aria-label="Dekorativ illustration med bok och rosor">
-          <div className="halo" />
-          <div className="cross" aria-hidden="true"><i /><b /></div>
-          <div className="book"><span>LILLA<br />THERESE</span><small>BOKHANDEL</small></div>
-          <div className="rose rose-one">✿</div>
-          <div className="rose rose-two">✿</div>
-          <p>“Gör de minsta ting<br />med den största kärlek.”</p>
-        </div>
-        <div className="scroll-note"><span /> Scrolla för att upptäcka</div>
+        <figure className="hero-image">
+          <img src="/therese.webp" alt="Staty av den heliga Thérèse av Lisieux" />
+        </figure>
       </section>
 
-      <section className="welcome" id="om">
-        <p className="section-number">01 · Välkommen</p>
-        <div>
-          <h2>En plats för stillhet,<br /><em>nyfikenhet</em> och tro.</h2>
-          <p>Intill Kristus Konungens kyrka, mellan Heden och Trädgårdsföreningen, hittar du vår personliga bokhandel. Här får du gärna stanna upp, bläddra, fråga och upptäcka.</p>
-          <p>Vi hjälper dig att hitta rätt bok, en meningsfull gåva eller något som får följa med i ditt böneliv.</p>
+      <section className="sortiment" id="sortiment">
+        <div className="sortiment-intro">
+          <p className="label">Sortiment & information</p>
+          <h2>Hitta rätt</h2>
+          <p>Vi har samlat butikens innehåll i tre enkla avdelningar.</p>
         </div>
-      </section>
-
-      <section className="assortment" id="sortiment">
-        <div className="section-heading">
-          <div><p className="eyebrow light">Utvalt med omsorg</p><h2>Det här hittar du hos oss</h2></div>
-          <p>Vårt sortiment förenar kunskap, tradition och skönhet. Fråga oss gärna om du söker något särskilt.</p>
-        </div>
-        <div className="assortment-grid">
-          {assortment.map((item) => (
-            <article key={item.number}>
-              <span>{item.number}</span>
-              <div className={`category-art art-${item.number}`} aria-hidden="true"><i>✦</i></div>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </article>
+        <div className="category-groups">
+          {categoryGroups.map((group) => (
+            <section className="category-group" key={group.title} aria-labelledby={`category-${group.number}`}>
+              <div className="category-heading">
+                <span>{group.number}</span>
+                <div>
+                  <h3 id={`category-${group.number}`}>{group.title}</h3>
+                  <p>{group.description}</p>
+                </div>
+              </div>
+              <div className="category-links">
+                {group.items.map((item) => (
+                  <a href={item.href} key={item.name}>
+                    <span>{item.name}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                ))}
+              </div>
+            </section>
           ))}
         </div>
       </section>
 
       <section className="visit" id="besok">
-        <div className="visit-intro">
-          <p className="section-number">02 · Besök oss</p>
-          <h2>Välkommen in.</h2>
-          <p>Du hittar oss centralt i Göteborg, precis bredvid Kristus Konungens kyrka.</p>
-          <a className="button primary" href="https://maps.google.com/?q=Sten+Sturegatan+1A+Göteborg" target="_blank" rel="noreferrer">Öppna i kartan <span>↗</span></a>
+        <div>
+          <p className="label">Besök</p>
+          <h2>Sten Sturegatan 1A<br />411 39 Göteborg</h2>
+          <a className="map-link" href="https://maps.google.com/?q=Sten+Sturegatan+1A+Göteborg" target="_blank" rel="noreferrer">Visa i Google Maps ↗</a>
         </div>
-        <div className="details-card">
-          <div className="address">
-            <span>Adress</span>
-            <strong>Sten Sturegatan 1A<br />411 39 Göteborg</strong>
-          </div>
-          <div className="hours">
-            <span>Ordinarie öppettider</span>
-            {hours.map(([day, time]) => <p key={day}><b>{day}</b><strong>{time}</strong></p>)}
-            <small>På söndagar har vi stängt under högmässan.</small>
-          </div>
+        <div className="hours">
+          <p className="label">Öppettider</p>
+          {hours.map(([day, time]) => <p key={day}><span>{day}</span><strong>{time}</strong></p>)}
+          <small>Stängt under högmässan på söndagar.</small>
         </div>
-      </section>
-
-      <section className="order">
-        <div><p className="eyebrow">Letar du efter något särskilt?</p><h2>Vi hjälper dig gärna att beställa.</h2></div>
-        <div><p>Mejla vad du söker så återkommer vi. Beställningar betalas efter bekräftelse och hämtas i butik eller skickas mot frakt.</p><a className="text-link" href="mailto:info@lillatherese.se?subject=Förfrågan%20om%20beställning">Skicka en förfrågan →</a></div>
       </section>
 
       <footer>
-        <div className="footer-brand"><span className="brand-mark">✦</span><strong>Lilla Therese</strong><small>Katolsk bokhandel sedan 2008</small></div>
-        <div><span>Kontakt</span><a href="mailto:info@lillatherese.se">info@lillatherese.se</a><a href="tel:+4631180730">031–18 07 30</a></div>
-        <div><span>Besök</span><p>Sten Sturegatan 1A<br />411 39 Göteborg</p></div>
-        <div><span>Snabblänkar</span><a href="#sortiment">Sortiment</a><a href="#besok">Öppettider</a></div>
-        <p className="copyright">© {new Date().getFullYear()} Lilla Therese Bokhandel AB</p>
+        <strong>Lilla Therese Bokhandel AB</strong>
+        <div><a href="mailto:info@lillatherese.se">info@lillatherese.se</a><a href="tel:+4631132723">031–13 27 23</a></div>
+        <p>© {new Date().getFullYear()}</p>
       </footer>
     </main>
   );
