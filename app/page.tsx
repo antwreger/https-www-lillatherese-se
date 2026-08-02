@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element -- vinext serves this local asset directly; next/image URLs are not available in the Sites runtime. */
+
 const hours = [
   ["Måndag–tisdag", "Stängt"],
   ["Onsdag–fredag", "15.00–18.00"],
@@ -7,20 +9,20 @@ const hours = [
 
 const categoryGroups = [
   {
-    title: "Föremål & andakt",
-    items: [
-      { name: "Rosenkransar", href: "https://www.lillatherese.se/rosenkransar" },
-      { name: "Krucifix", href: "https://www.lillatherese.se/krucifix" },
-      { name: "Ikoner", href: "https://www.lillatherese.se/vrigt" },
-    ],
-  },
-  {
     title: "Böcker & förlag",
     items: [
       { name: "Karmels förlag", href: "https://www.lillatherese.se/b-cker" },
       { name: "Veritas förlag", href: "https://www.lillatherese.se/veritas-f-rlag" },
       { name: "Youcat ungdom", href: "https://www.lillatherese.se/youcat-ungdom/" },
       { name: "Catholica förlag", href: "https://www.lillatherese.se/catholica-f-rlag" },
+    ],
+  },
+  {
+    title: "Föremål & andakt",
+    items: [
+      { name: "Rosenkransar", href: "https://www.lillatherese.se/rosenkransar" },
+      { name: "Krucifix", href: "https://www.lillatherese.se/krucifix" },
+      { name: "Ikoner", href: "https://www.lillatherese.se/vrigt" },
     ],
   },
   {
@@ -71,27 +73,27 @@ export default function Home() {
         <a className="brand" href="#top">Lilla Therese</a>
         <nav aria-label="Huvudmeny">
           <a href="#sortiment">Sortiment</a>
-          <a href="#besok">Besök</a>
           <a href="mailto:info@lillatherese.se">Kontakt</a>
+          <a className="nav-visit" href="#besok">Besök oss</a>
         </nav>
       </header>
 
       <section className="hero" id="top">
         <div className="hero-copy">
-          <p>Katolsk bokhandel i Göteborg</p>
+          <p className="eyebrow">Katolsk bokhandel i Göteborg</p>
           <h1>Lilla Therese<br />Bokhandel</h1>
-          <a href="#besok">Sten Sturegatan 1A</a>
+          <p className="hero-intro">Böcker, andaktsföremål och gåvor för det kristna livet.</p>
+          <div className="hero-actions">
+            <a className="button button-light" href="#sortiment">Utforska sortimentet</a>
+            <a className="button button-quiet" href="#besok">Besök butiken</a>
+          </div>
         </div>
         <figure className="hero-image">
-          <img src="/therese.webp" alt="Staty av den heliga Thérèse av Lisieux" />
+          <img src="/therese.webp" alt="Staty av den heliga Thérèse av Lisieux" width="1620" height="1080" loading="eager" fetchPriority="high" decoding="async" />
         </figure>
       </section>
 
-      <section className="sortiment" id="sortiment">
-        <div className="sortiment-intro">
-          <p className="label">Sortiment</p>
-          <h2>Vårt utbud</h2>
-        </div>
+      <section className="sortiment" id="sortiment" aria-label="Sortiment och information">
         <div className="category-groups">
           {categoryGroups.map((group) => (
             <section className="category-group" key={group.title}>
@@ -107,10 +109,12 @@ export default function Home() {
       </section>
 
       <section className="visit" id="besok">
-        <div>
+        <div className="visit-address">
           <p className="label">Besök</p>
-          <h2>Sten Sturegatan 1A<br />411 39 Göteborg</h2>
-          <a className="map-link" href="https://maps.google.com/?q=Sten+Sturegatan+1A+Göteborg" target="_blank" rel="noreferrer">Visa i Google Maps</a>
+          <h2>Välkommen in</h2>
+          <address>Sten Sturegatan 1A<br />411 39 Göteborg</address>
+          <p className="visit-note">Centralt i Göteborg, intill Kristus Konungens kyrka.</p>
+          <a className="button button-light" href="https://maps.google.com/?q=Sten+Sturegatan+1A+Göteborg" target="_blank" rel="noreferrer">Hitta till butiken</a>
         </div>
         <div className="hours">
           <p className="label">Öppettider</p>
@@ -120,9 +124,9 @@ export default function Home() {
       </section>
 
       <footer>
-        <strong>Lilla Therese Bokhandel AB</strong>
-        <div><a href="mailto:info@lillatherese.se">info@lillatherese.se</a><a href="tel:+4631132723">031–13 27 23</a></div>
-        <p>© {new Date().getFullYear()}</p>
+        <div className="footer-brand"><strong>Lilla Therese</strong><span>Katolsk bokhandel i Göteborg</span></div>
+        <div className="footer-contact"><a href="mailto:info@lillatherese.se">info@lillatherese.se</a><a href="tel:+4631132723">031–13 27 23</a></div>
+        <p>© {new Date().getFullYear()} Lilla Therese Bokhandel AB</p>
       </footer>
     </main>
   );
