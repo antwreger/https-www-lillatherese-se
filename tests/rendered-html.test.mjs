@@ -41,26 +41,35 @@ test("server-renders the Lilla Therese homepage", async () => {
 test("keeps desktop content bounded and mobile layout intact", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
-  assert.match(css, /\.header-inner\s*\{[^}]*max-width:1440px[^}]*margin:0 auto/s);
-  assert.match(css, /\.hero-inner\s*\{[^}]*max-width:1440px[^}]*margin:0 auto/s);
-  assert.match(css, /\.hero\s*\{[^}]*background:var\(--wine\)/s);
-  assert.match(css, /gap:clamp\(32px,4vw,64px\)/);
-  assert.match(css, /width:clamp\(340px,31vw,480px\)/);
-  assert.match(css, /font:500 clamp\(76px,6\.5vw,112px\)/);
-  assert.doesNotMatch(css, /100(?:s|d|l)?vh/);
+  assert.match(css, /--container-width:1280px/);
+  assert.match(css, /\.header-inner,\.hero-inner\s*\{[^}]*max-width:var\(--container-width\)[^}]*margin-inline:auto[^}]*padding-inline:var\(--container-gutter\)/s);
+  assert.doesNotMatch(css, /--header-container-width/);
+  assert.match(css, /@media \(min-width:981px\)\s*\{\s*\.brand\s*\{\s*font-size:24px;\s*\}[\s\S]*?nav\s*\{\s*gap:34px;\s*font-size:12px;/s);
+  assert.match(css, /\.hero\s*\{[^}]*width:100%[^}]*background:var\(--wine\)/s);
+  assert.match(css, /gap:clamp\(32px,4vw,56px\)/);
+  assert.match(css, /width:min\(100%,clamp\(320px,30vw,480px\)\)/);
+  assert.match(css, /font:500 clamp\(68px,6vw,108px\)/);
+  assert.match(css, /--header-height:88px/);
+  assert.match(css, /header\s*\{[^}]*height:var\(--header-height\)/s);
+  assert.match(css, /\.hero\s*\{[^}]*min-height:calc\(100svh - var\(--header-height\)\)/s);
+  assert.match(css, /\.hero-inner\s*\{[^}]*min-height:inherit/s);
+  assert.doesNotMatch(css, /@media \(min-width:1280px\)/);
+  assert.match(css, /\.hero \.eyebrow\s*\{[^}]*font-size:clamp\(/s);
+  assert.match(css, /\.hero-intro\s*\{[^}]*font:400 clamp\(/s);
+  assert.match(css, /\.hero \.button\s*\{[^}]*min-height:clamp\([^}]*font-size:clamp\(/s);
   assert.match(
     css,
-    /@media \(max-width:720px\)[\s\S]*?\.hero-inner\s*\{\s*padding:72px 20px 38px;\s*grid-template-columns:1fr;\s*gap:52px;/,
+    /@media \(max-width:720px\)[\s\S]*?\.hero\s*\{\s*min-height:0;\s*\}[\s\S]*?\.hero-inner\s*\{\s*padding-block:72px 38px;\s*grid-template-columns:1fr;\s*gap:52px;/,
   );
 });
 
-test("centers the 1440px container at desktop and 4K widths", () => {
+test("centers the shared 1280px header and hero container", () => {
   for (const viewport of [1440, 1920, 2560, 3840]) {
-    const containerWidth = Math.min(viewport, 1440);
+    const containerWidth = Math.min(viewport, 1280);
     const left = (viewport - containerWidth) / 2;
     const right = viewport - left - containerWidth;
 
-    assert.equal(containerWidth, 1440);
+    assert.equal(containerWidth, 1280);
     assert.equal(left, right);
   }
 });
