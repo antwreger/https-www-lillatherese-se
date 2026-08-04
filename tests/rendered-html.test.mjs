@@ -41,12 +41,13 @@ test("server-renders the Lilla Therese homepage", async () => {
 test("keeps desktop content bounded and mobile layout intact", async () => {
   const css = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
 
-  assert.match(css, /--container-width:1280px/);
+  assert.match(css, /--container-width:1040px/);
   assert.match(css, /\.header-inner,\.hero-inner\s*\{[^}]*max-width:var\(--container-width\)[^}]*margin-inline:auto[^}]*padding-inline:var\(--container-gutter\)/s);
   assert.doesNotMatch(css, /--header-container-width/);
-  assert.match(css, /@media \(min-width:981px\)\s*\{\s*\.brand\s*\{\s*font-size:24px;\s*\}[\s\S]*?nav\s*\{\s*gap:34px;\s*font-size:12px;/s);
+  assert.match(css, /@media \(min-width:981px\)[\s\S]*?\.brand\s*\{\s*font-size:24px;\s*\}[\s\S]*?nav\s*\{\s*gap:34px;\s*font-size:12px;/s);
   assert.match(css, /\.hero\s*\{[^}]*width:100%[^}]*background:var\(--wine\)/s);
-  assert.match(css, /gap:clamp\(32px,4vw,56px\)/);
+  assert.match(css, /grid-template-columns:minmax\(0,540px\) minmax\(320px,360px\)/);
+  assert.match(css, /gap:60px/);
   assert.match(css, /width:min\(100%,clamp\(320px,30vw,480px\)\)/);
   assert.match(css, /font:500 clamp\(68px,6vw,108px\)/);
   assert.match(css, /--header-height:88px/);
@@ -63,13 +64,23 @@ test("keeps desktop content bounded and mobile layout intact", async () => {
   );
 });
 
-test("centers the shared 1280px header and hero container", () => {
+test("centers the shared 1040px header and hero container", () => {
   for (const viewport of [1440, 1920, 2560, 3840]) {
-    const containerWidth = Math.min(viewport, 1280);
+    const containerWidth = Math.min(viewport, 1040);
     const left = (viewport - containerWidth) / 2;
     const right = viewport - left - containerWidth;
 
-    assert.equal(containerWidth, 1280);
+    assert.equal(containerWidth, 1040);
     assert.equal(left, right);
   }
+});
+
+test("publishes the shared header and hero shell in the static Pages artifact", async () => {
+  const html = await readFile(new URL("../pages/index.html", import.meta.url), "utf8");
+
+  assert.match(html, /class="site-shell"/);
+  assert.match(html, /class="header-inner"/);
+  assert.match(html, /class="hero-inner"/);
+  assert.match(html, /--container-width:1040px/);
+  assert.match(html, /grid-template-columns:minmax\(0,540px\) minmax\(320px,360px\)/);
 });
