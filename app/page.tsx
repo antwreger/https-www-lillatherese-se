@@ -69,33 +69,35 @@ export default function Home() {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }} />
-      <header>
-        <div className="header-inner">
-          <a className="brand" href="#top">Lilla Therese</a>
-          <nav aria-label="Huvudmeny">
-            <a href="#sortiment">Sortiment</a>
-            <a href="mailto:info@lillatherese.se">Kontakt</a>
-            <a className="nav-visit" href="#besok">Besök oss</a>
-          </nav>
-        </div>
-      </header>
-
-      <section className="hero" id="top">
-        <div className="hero-inner">
-          <div className="hero-copy">
-            <p className="eyebrow">Katolsk bokhandel i Göteborg</p>
-            <h1>Lilla Therese<br />Bokhandel</h1>
-            <p className="hero-intro">Böcker, andaktsföremål och gåvor för det kristna livet.</p>
-            <div className="hero-actions">
-              <a className="button button-light" href="#sortiment">Utforska sortimentet</a>
-              <a className="button button-quiet" href="#besok">Besök butiken</a>
-            </div>
+      <div className="site-shell">
+        <header>
+          <div className="header-inner">
+            <a className="brand" href="#top">Lilla Therese</a>
+            <nav aria-label="Huvudmeny">
+              <a href="#sortiment">Sortiment</a>
+              <a href="mailto:info@lillatherese.se">Kontakt</a>
+              <a className="nav-visit" href="#besok">Besök oss</a>
+            </nav>
           </div>
-          <figure className="hero-image">
-            <img src="/therese.webp" alt="Staty av den heliga Thérèse av Lisieux" width="1620" height="1080" loading="eager" fetchPriority="high" decoding="async" />
-          </figure>
-        </div>
-      </section>
+        </header>
+
+        <section className="hero" id="top">
+          <div className="hero-inner">
+            <div className="hero-copy">
+              <p className="eyebrow">Katolsk bokhandel i Göteborg</p>
+              <h1>Lilla Therese<br />Bokhandel</h1>
+              <p className="hero-intro">Böcker, andaktsföremål och gåvor för det kristna livet.</p>
+              <div className="hero-actions">
+                <a className="button button-light" href="#sortiment">Utforska sortimentet</a>
+                <a className="button button-quiet" href="#besok">Besök butiken</a>
+              </div>
+            </div>
+            <figure className="hero-image">
+              <img src="/therese.webp" alt="Staty av den heliga Thérèse av Lisieux" width="1620" height="1080" loading="eager" fetchPriority="high" decoding="async" />
+            </figure>
+          </div>
+        </section>
+      </div>
 
       <section className="sortiment" id="sortiment" aria-label="Sortiment och information">
         <div className="category-groups">
