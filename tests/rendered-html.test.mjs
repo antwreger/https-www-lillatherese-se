@@ -61,7 +61,7 @@ test("keeps desktop content bounded and mobile layout intact", async () => {
   assert.match(css, /\.hero \.button\s*\{[^}]*min-height:clamp\([^}]*font-size:clamp\(/s);
   assert.match(
     css,
-    /@media \(max-width:720px\)[\s\S]*?\.hero\s*\{\s*min-height:0;\s*\}[\s\S]*?\.hero-inner\s*\{\s*padding-block:72px 38px;\s*grid-template-columns:1fr;\s*gap:52px;/,
+    /@media \(max-width:720px\)[\s\S]*?\.hero\s*\{\s*min-height:0;\s*\}[\s\S]*?\.hero-inner\s*\{\s*padding-block:60px 32px;\s*grid-template-columns:1fr;\s*gap:32px;/,
   );
 });
 
