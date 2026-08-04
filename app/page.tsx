@@ -130,9 +130,11 @@ export default function Home() {
       </section>
 
       <footer>
-        <div className="footer-brand"><strong>Lilla Therese</strong><span>Katolsk bokhandel i Göteborg</span></div>
-        <div className="footer-contact"><a href="mailto:info@lillatherese.se">info@lillatherese.se</a><a href="tel:+4631132723">031–13 27 23</a></div>
-        <p>© {new Date().getFullYear()} Lilla Therese Bokhandel AB</p>
+        <div className="footer-inner">
+          <div className="footer-brand"><strong>Lilla Therese</strong><span>Katolsk bokhandel i Göteborg</span></div>
+          <div className="footer-contact"><a href="mailto:info@lillatherese.se">info@lillatherese.se</a><a href="tel:+4631132723">031–13 27 23</a></div>
+          <p>© {new Date().getFullYear()} Lilla Therese Bokhandel AB</p>
+        </div>
       </footer>
     </main>
   );
