@@ -78,7 +78,7 @@ footer { min-height:190px; padding-block:48px; }
   .brand { font-size:18px; }
   nav { gap:16px; font-size:11px; }
   .nav-visit { min-height:40px; padding:0 14px; }
-  .hero-inner { padding-block:60px 32px; grid-template-columns:1fr; gap:32px; }
+  .hero-inner { padding-block:60px 32px; grid-template-columns:1fr; gap:22px; }
   .eyebrow,.label { margin-bottom:24px; }
   .hero .eyebrow { margin-bottom:20px; }
   .hero h1 { max-width:100%; font-size:clamp(54px,16vw,74px); line-height:.85; letter-spacing:-.045em; }
