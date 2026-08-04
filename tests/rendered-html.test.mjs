@@ -56,6 +56,7 @@ test("keeps desktop content bounded and mobile layout intact", async () => {
   assert.match(css, /\.hero-inner\s*\{[^}]*min-height:inherit/s);
   assert.match(css, /\.category-groups,\.visit-inner,\.footer-inner\s*\{[^}]*max-width:var\(--container-width\)[^}]*margin-inline:auto[^}]*padding-inline:var\(--container-gutter\)/s);
   assert.match(css, /@media \(min-width:768px\) and \(max-width:1100px\) and \(orientation:portrait\)[\s\S]*?grid-template-columns:repeat\(2,minmax\(0,1fr\)\)[\s\S]*?min-height:320px/);
+  assert.match(css, /\.category-group:last-child:nth-child\(odd\)\s*\{[^}]*width:calc\(\(100% - 24px\)\/2\)[^}]*grid-column:1\/-1[^}]*justify-self:center/s);
   assert.doesNotMatch(css, /@media \(min-width:1280px\)/);
   assert.match(css, /\.hero \.eyebrow\s*\{[^}]*font-size:clamp\(/s);
   assert.match(css, /\.hero-intro\s*\{[^}]*font:400 clamp\(/s);
