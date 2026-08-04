@@ -31,6 +31,7 @@ test("server-renders the Lilla Therese homepage", async () => {
   const html = await response.text();
   assert.match(html, /<title>Katolsk bokhandel i Göteborg \| Lilla Therese<\/title>/i);
   assert.match(html, /class="header-inner"/);
+  assert.match(html, /class="mobile-menu"/);
   assert.match(html, /class="hero-inner"/);
   assert.match(html, /Lilla Therese<\/h1>|Lilla Therese<br\s*\/>Bokhandel/i);
   assert.match(html, /Staty av den heliga Thérèse av Lisieux/);
@@ -83,6 +84,7 @@ test("publishes the responsive header and hero layout in the static Pages artifa
 
   assert.doesNotMatch(html, /class="site-shell"/);
   assert.match(html, /class="header-inner"/);
+  assert.match(html, /class="mobile-menu"/);
   assert.match(html, /class="hero-inner"/);
   assert.match(html, /class="visit-inner"/);
   assert.match(html, /class="footer-inner"/);

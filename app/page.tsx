@@ -77,6 +77,18 @@ export default function Home() {
             <a href="mailto:info@lillatherese.se">Kontakt</a>
             <a className="nav-visit" href="#besok">Besök oss</a>
           </nav>
+          <details className="mobile-menu">
+            <summary aria-label="Öppna huvudmenyn">
+              <span className="mobile-menu-line" aria-hidden="true" />
+              <span className="mobile-menu-line" aria-hidden="true" />
+              <span className="mobile-menu-line" aria-hidden="true" />
+            </summary>
+            <div className="mobile-menu-links">
+              <a href="#sortiment">Sortiment</a>
+              <a href="mailto:info@lillatherese.se">Kontakt</a>
+              <a className="nav-visit" href="#besok">Besök oss</a>
+            </div>
+          </details>
         </div>
       </header>
 
