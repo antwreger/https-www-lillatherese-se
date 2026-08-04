@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root { --header-height:88px; --container-width:1280px; --container-gutter:clamp(20px,3vw,40px); --paper:#f5f1e9; --paper-deep:#ebe3d7; --ink:#201d1a; --wine:#741e2b; --rose:#dcb9a4; }
+:root { --header-height:88px; --container-width:1120px; --container-gutter:clamp(20px,3vw,40px); --paper:#f5f1e9; --paper-deep:#ebe3d7; --ink:#201d1a; --wine:#741e2b; --rose:#dcb9a4; }
 * { box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--font-sans),sans-serif; }
@@ -18,7 +18,7 @@ nav a:hover { color:var(--wine); }
 .nav-visit { min-height:42px; padding-inline:clamp(14px,1.3vw,18px); justify-content:center; border-radius:100px; background:var(--ink); color:var(--paper); }
 .nav-visit:hover { background:var(--wine); color:var(--paper); }
 .hero { width:100%; min-height:calc(100svh - var(--header-height)); background:var(--wine); color:#f7f1e8; overflow:hidden; }
-.hero-inner { min-height:inherit; padding-block:clamp(48px,6vh,76px); display:grid; grid-template-columns:minmax(0,1.1fr) minmax(320px,.7fr); align-items:center; gap:clamp(32px,4vw,56px); }
+.hero-inner { min-height:inherit; padding-block:clamp(48px,6vh,76px); display:grid; grid-template-columns:minmax(0,1.1fr) minmax(320px,.7fr); align-items:center; gap:clamp(32px,3vw,44px); }
 .hero-copy { position:relative; z-index:1; }
 .eyebrow,.label { margin:0 0 30px; color:var(--wine); font-size:11px; font-weight:600; letter-spacing:.19em; text-transform:uppercase; }
 .hero .eyebrow { margin-bottom:clamp(24px,2vw,30px); color:var(--rose); font-size:clamp(11px,calc(10px + .15vw),13px); }
