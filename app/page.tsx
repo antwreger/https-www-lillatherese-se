@@ -113,17 +113,19 @@ export default function Home() {
       </section>
 
       <section className="visit" id="besok">
-        <div className="visit-address">
-          <p className="label">Besök</p>
-          <h2>Välkommen in</h2>
-          <address>Sten Sturegatan 1A<br />411 39 Göteborg</address>
-          <p className="visit-note">Centralt i Göteborg, intill Kristus Konungens kyrka.</p>
-          <a className="button button-light" href="https://maps.google.com/?q=Sten+Sturegatan+1A+Göteborg" target="_blank" rel="noreferrer">Hitta till butiken</a>
-        </div>
-        <div className="hours">
-          <p className="label">Öppettider</p>
-          {hours.map(([day, time]) => <p key={day}><span>{day}</span><strong>{time}</strong></p>)}
-          <small>Stängt under högmässan på söndagar.</small>
+        <div className="visit-inner">
+          <div className="visit-address">
+            <p className="label">Besök</p>
+            <h2>Välkommen in</h2>
+            <address>Sten Sturegatan 1A<br />411 39 Göteborg</address>
+            <p className="visit-note">Centralt i Göteborg, intill Kristus Konungens kyrka.</p>
+            <a className="button button-light" href="https://maps.google.com/?q=Sten+Sturegatan+1A+Göteborg" target="_blank" rel="noreferrer">Hitta till butiken</a>
+          </div>
+          <div className="hours">
+            <p className="label">Öppettider</p>
+            {hours.map(([day, time]) => <p key={day}><span>{day}</span><strong>{time}</strong></p>)}
+            <small>Stängt under högmässan på söndagar.</small>
+          </div>
         </div>
       </section>
 

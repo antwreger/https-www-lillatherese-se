@@ -54,6 +54,7 @@ test("keeps desktop content bounded and mobile layout intact", async () => {
   assert.match(css, /header\s*\{[^}]*height:var\(--header-height\)/s);
   assert.match(css, /\.hero\s*\{[^}]*min-height:calc\(100svh - var\(--header-height\)\)/s);
   assert.match(css, /\.hero-inner\s*\{[^}]*min-height:inherit/s);
+  assert.match(css, /\.category-groups,\.visit-inner\s*\{[^}]*max-width:var\(--container-width\)[^}]*margin-inline:auto[^}]*padding-inline:var\(--container-gutter\)/s);
   assert.doesNotMatch(css, /@media \(min-width:1280px\)/);
   assert.match(css, /\.hero \.eyebrow\s*\{[^}]*font-size:clamp\(/s);
   assert.match(css, /\.hero-intro\s*\{[^}]*font:400 clamp\(/s);
@@ -81,6 +82,7 @@ test("publishes the responsive header and hero layout in the static Pages artifa
   assert.doesNotMatch(html, /class="site-shell"/);
   assert.match(html, /class="header-inner"/);
   assert.match(html, /class="hero-inner"/);
+  assert.match(html, /class="visit-inner"/);
   assert.match(html, /--container-width:1280px/);
   assert.match(html, /grid-template-columns:minmax\(0,1\.1fr\) minmax\(320px,\.75fr\)/);
   assert.match(html, /gap:clamp\(40px,4vw,64px\)/);

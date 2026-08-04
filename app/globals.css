@@ -34,23 +34,25 @@ nav a:hover { color:var(--wine); }
 .button-quiet:hover { background:rgba(255,255,255,.08); box-shadow:inset 0 0 0 1px rgba(255,255,255,.82); }
 .hero-image { width:100%; max-width:480px; aspect-ratio:4/5; margin:0; justify-self:end; border-radius:48% 48% 18px 18px; overflow:hidden; background:#5d1722; }
 .hero-image img { width:100%; height:100%; display:block; object-fit:cover; object-position:32% 50%; transform:none; }
-.sortiment { padding:clamp(88px,10vw,150px) max(32px,8vw); }
-.category-groups { max-width:1440px; margin:0 auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
-.category-group { min-height:390px; padding:38px 34px 42px; display:flex; flex-direction:column; border-radius:3px; background:var(--paper-deep); }
+.sortiment { padding-block:clamp(88px,10vw,150px); }
+.category-groups,.visit-inner { width:100%; max-width:var(--container-width); margin-inline:auto; padding-inline:var(--container-gutter); }
+.category-groups { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.category-group { min-height:390px; padding:38px 34px 42px; display:flex; flex-direction:column; justify-content:center; border-radius:3px; background:var(--paper-deep); }
 .category-group h3 { margin:0 0 46px; color:var(--wine); font:600 11px var(--font-sans); letter-spacing:.17em; text-transform:uppercase; }
 .category-links { display:grid; gap:16px; }
 .category-links a { width:max-content; max-width:100%; font:500 clamp(27px,2.5vw,40px)/1.08 var(--font-serif); letter-spacing:-.018em; transition:color .2s ease,transform .2s ease; }
 .category-links a:hover,.category-links a:focus-visible { color:var(--wine); transform:translateX(4px); }
-.visit { padding:clamp(90px,10vw,150px) max(32px,8vw); display:grid; grid-template-columns:1.08fr .92fr; gap:12%; background:var(--ink); color:#f7f1e8; }
+.visit { padding-block:clamp(90px,10vw,150px); background:var(--ink); color:#f7f1e8; }
+.visit-inner { display:grid; grid-template-columns:1.08fr .92fr; gap:12%; }
 .visit .label { color:var(--rose); }
 .visit h2 { margin:0 0 28px; font:500 clamp(48px,5vw,72px)/.95 var(--font-serif); letter-spacing:-.035em; }
 .visit address { margin:0; font:500 clamp(24px,2.2vw,34px)/1.3 var(--font-serif); }
 .visit-note { max-width:390px; margin:24px 0 34px; color:#bdb2aa; font-size:13px; line-height:1.65; }
 .hours { padding-top:4px; }
-.hours>p:not(.label) { display:flex; justify-content:space-between; gap:30px; padding:10px 0; margin:0; font-size:13px; }
-.hours strong { font-weight:500; text-align:right; }
+.hours>p:not(.label) { display:grid; grid-template-columns:minmax(0,1fr) max-content; align-items:baseline; column-gap:24px; padding:10px 0; margin:0; font-size:13px; }
+.hours strong { font-weight:500; text-align:right; white-space:nowrap; }
 .hours small { display:block; margin-top:24px; color:#a89a91; }
-footer { min-height:210px; padding:56px max(32px,5vw); display:grid; grid-template-columns:1.7fr 1fr auto; gap:48px; align-items:start; }
+footer { min-height:190px; padding:48px max(32px,5vw); display:grid; grid-template-columns:1.7fr 1fr auto; gap:48px; align-items:start; }
 .footer-brand { display:flex; flex-direction:column; gap:9px; }
 .footer-brand strong { font:600 22px/1 var(--font-serif); text-transform:uppercase; letter-spacing:.035em; }
 .footer-brand span { color:#625b56; font-size:12px; }
@@ -82,19 +84,18 @@ footer>p { margin:0; color:#625b56; font-size:11px; }
   .hero-actions { margin-top:30px; }
   .button { min-height:48px; }
   .hero-image { width:min(78vw,340px); margin:0 0 0 auto; justify-self:end; border-radius:48% 48% 12px 12px; }
-  .sortiment,.visit { padding:76px 20px; }
-  .visit { grid-template-columns:1fr; }
+  .sortiment,.visit { padding-block:76px; }
+  .visit-inner { grid-template-columns:1fr; }
   .category-groups { grid-template-columns:1fr; gap:14px; }
   .category-group { min-height:0; padding:32px 26px 36px; }
   .category-group h3 { margin-bottom:30px; }
   .category-links { gap:12px; }
   .category-links a { font-size:30px; }
-  .visit { gap:64px; }
+  .visit-inner { gap:64px; }
   .visit h2 { font-size:clamp(48px,13vw,62px); }
   .visit address { font-size:28px; }
-  .hours>p:not(.label) { gap:20px; padding:10px 0; }
-  .hours strong { max-width:56%; }
-  footer { min-height:0; padding:48px 20px; grid-template-columns:1fr; gap:30px; }
+  .hours>p:not(.label) { column-gap:20px; padding:10px 0; }
+  footer { min-height:0; padding:42px 20px; grid-template-columns:1fr; gap:30px; }
 }
 @media (max-width:430px) {
   nav>a:not(.nav-visit) { display:none; }
